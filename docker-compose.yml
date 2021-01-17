@@ -5,7 +5,6 @@ services:
     lightspeed-ingest:     
         restart: on-failure
         image: projectlightspeed/ingest:latest
-        network_mode: host
         ports:
             - "8084:8084"
     
@@ -13,7 +12,6 @@ services:
     lightspeed-react:    
         restart: on-failure
         image: projectlightspeed/react:latest
-        network_mode: host
         ports:
             - "80:80"
         volumes: 
@@ -23,9 +21,9 @@ services:
     lightspeed-webrtc:     
         restart: on-failure
         image: projectlightspeed/webrtc:latest
-        network_mode: host
         # you can add additional arugments here for advanced WebRTC configuration
         command: ["lightspeed-webrtc", "--addr=localhost"]
         ports:
             - "8080:8080"
             - "65535:65535/udp"
+            - "20000-20500:20000-20500"
